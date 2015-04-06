@@ -35,16 +35,43 @@ int validateCredentials(char *usernameInput, char *passwordInput){
 
 }
 
+int parseCredentials(char *query, int length, char *username, char *password){
+	int i;
+	int u = 0;
+	int p = 0;
+	for(i=0;*(query+i) != '=';i++){}
+	i++;
+	//copy username
+	while(*(query+i) != '&'){
+		*(username+u) = *(query+i);
+		u++;
+	}
+	for(;*(query+i) != '=';i++){}
+	i++;
+	//copy password
+	while(i<length){
+		*(password+p) = *(query+i);
+		p++;
+	}
+	return 0;
+}
+
 int main(){
 	/* receive username and password from Welcome.html
 		 * generate an error web page with a link back to the  welcome page
 		 * display a sucess page with a link to the topics update page
 	     ^generate these redirection pages using printf
 	*/
+	printf("%s%c%c\n",
+	  "Content-Type:text/html;charset=iso-8859-1",13,10);
+	printf("<TITLE>Multiplication results</TITLE>\n");
 	int length = atoi(getenv("CONTENT_LENGTH"));
 	char string[200];
-	fgets(string, length, stdin); 
-	printf("message: %s\n", string);
-	printf("%d", validateCredentials("daniel", "yarden"));	
+	fgets(string, length+1, stdin); 
+	printf("<p>message: %s", string);
 	
+	char username[32], password[32];
+	parseCredentials(string, length, username, password);
+	//printf("%d", validateCredentials(username, password));	
+	return 0;	
 }
