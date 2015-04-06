@@ -12,7 +12,7 @@
 int validateCredentials(char *usernameInput, char *passwordInput){
 	FILE *file;
 	//open file
-	if((file=fopen("databases/members.csv", "r")) == 0){
+	if((file=fopen("../databases/members.csv", "r")) == 0){
 		printf("error reading members.csv.\n");
 		return -1;
 	}
@@ -27,6 +27,7 @@ int validateCredentials(char *usernameInput, char *passwordInput){
 	while(getline(&line, &bytes, file) > 0){
 		//parsing the line
 		sscanf(line, "%s %s", username, password);
+		printf("%s %s <br>", username, password);
 		//validating
 		if(strcmp(usernameInput, username) == 0 && strcmp(passwordInput, password) == 0)
 			return 1;		
@@ -44,15 +45,20 @@ int parseCredentials(char *query, int length, char *username, char *password){
 	//copy username
 	while(*(query+i) != '&'){
 		*(username+u) = *(query+i);
+		printf("%s\n", username);
 		u++;
+		i++;
 	}
+	*(username+u) = '\0';
 	for(;*(query+i) != '=';i++){}
 	i++;
 	//copy password
 	while(i<length){
 		*(password+p) = *(query+i);
 		p++;
+		i++;
 	}
+	*(password+u) = '\0';
 	return 0;
 }
 
@@ -68,10 +74,10 @@ int main(){
 	int length = atoi(getenv("CONTENT_LENGTH"));
 	char string[200];
 	fgets(string, length+1, stdin); 
-	printf("<p>message: %s", string);
+	printf("<p>message: %s <br>", string);
 	
 	char username[32], password[32];
 	parseCredentials(string, length, username, password);
-	//printf("%d", validateCredentials(username, password));	
+	printf("%d<br>", validateCredentials(username, password));	
 	return 0;	
 }

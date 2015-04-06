@@ -29,17 +29,41 @@ sub writeNewUserToDB {
   close $fh;
 }
 
+sub parseQuery{
+	my @userData = split(/&/, @_[0]);
+	my %FORM;
+	foreach my $entry (my $userData){
+		(my $key, my $value) = split(/=/, $entry);
+		my $value =~ tr/+/ /;
+		$value =~ s/%(..)/pack("C", hex($1))/eg;
+		$FORM{$key} = $value; 
+	}
+		
+	return %FORM;
+}
+
 sub main {
-  my $x = checkUsernameExistence("klk");
+  #my $x = checkUsernameExistence("klk");
 
-  if ($x == 0) {
-    writeNewUserToDB("peopfhjsdhjfsle", "hey");
-  }
+  #if ($x == 0) {
+ #   writeNewUserToDB("peopfhjsdhjfsle", "hey");
+  #}
 
-  $query = $ENV{QUERY_STRING};
+  read(STDIN, my $query, $ENV{'CONTENT_LENGTH'});
+  my %userData = parseQuery($query);
 
-  print "Content-Type:text/html;charset=iso-8859-1";
-  print "<TITLE>$query</TITLE>";
+  print "Content-type:text/html\r\n\r\n";
+  print "<html>";
+  print "<head>";
+  print "</head>";
+  print "<body>";
+  print "<p>query: $query</p>";
+  print "<p>about to print!</p>";
+print "<p>$userData{username}</p>";
+print "<p>$userData{password}</p>";
+  print "<p>printed!</p>";
+  print "</body>";
+  print "</html>";
 }
 
 main();
