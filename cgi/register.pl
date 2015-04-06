@@ -3,22 +3,19 @@
 use strict;
 use CGI ':standard';
 
-$file = '../databases/members.csv';
-
-
+my $file = '../databases/members.csv';
 
 sub checkUsernameExistence {
   open(INFO, "<$file");
-  @lines = <INFO>;
+  my @lines = <INFO>;
   close(INFO);
 
-  foreach $line (@lines) {
+  foreach my $line (@lines) {
     #print "$line";
 
-    @words = split(/\s+/, $line);
+    my @words = split(/\s+/, $line);
 
     if (@words[0] eq @_[0]) {
-      print "Found user\n";
       return 1;
     } 
     
@@ -33,10 +30,10 @@ sub writeNewUserToDB {
 }
 
 sub main {
-  $x = checkUsernameExistence("klk");
+  my $x = checkUsernameExistence("klk");
 
   if ($x == 0) {
-    writeNewUserToDB("people", "hey");
+    writeNewUserToDB("peopfhjsdhjfsle", "hey");
   }
 
   $query = $ENV{QUERY_STRING};
