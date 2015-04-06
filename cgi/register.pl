@@ -44,9 +44,9 @@ sub parseQuery{
 
 sub main {
 	#read query from post
-	#read(STDIN, my $query, $ENV{'CONTENT_LENGTH'});
+	read(STDIN, my $query, $ENV{'CONTENT_LENGTH'});
 	#parse query
-	my %userData = parseQuery("username=yarden&password=daniel");
+	my %userData = parseQuery($query);
 
 	print "Content-type:text/html\r\n\r\n";
 	print "<html>";
@@ -54,14 +54,15 @@ sub main {
 	print "</head>";
 	print "<body>";
 
-	my $x = checkUsernameExistence(%userData{'username'});
+	print $userData{'username'};
+
 	#validate username
-	if($x == 0) {
-		writeNewUserToDB(%userData{'username'}, %userData{'password'});
+	if(checkUsernameExistence($userData{'username'}) == 0){
+		writeNewUserToDB($userData{'username'}, $userData{'password'});
 		print "<p>Congratz! you successfully created a new account.</p>";
 	}else{
 		#redirect
-		print "<p> %userData{'username'} already exists.</p>"
+		print "<p> $userData{'username'} already exists.</p>"
 	}
 
 	print "<a href=\"../index.html\"> go back to login page</a>";
