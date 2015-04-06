@@ -68,7 +68,7 @@ int main(){
 	*/
 	printf("%s%c%c\n",
 	  "Content-Type:text/html;charset=iso-8859-1",13,10);
-	printf("<TITLE>Multiplication results</TITLE>\n");
+	printf("<title>Login Page</title>\n");
 	int length = atoi(getenv("CONTENT_LENGTH"));
 	char string[200];
 	fgets(string, length+1, stdin); 
@@ -78,6 +78,7 @@ int main(){
 	if(validateCredentials(username, password)){
 		printf("<p>login successful.</p>");
 		printf("<a href=\"../feed.html\"> go to the feed page. </a>");
+		printf("<form action=\"cgi/MyFacebookPage.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"$userData{'username'}\"><br><br><input type=\"submit\" value=\"Go to Feed Page\"></fieldset></form>");
 	}else{
 		printf("<p>incorrect login information</p>");
 		printf("<a href=\"../index.html\"> please try again. </a>");	
