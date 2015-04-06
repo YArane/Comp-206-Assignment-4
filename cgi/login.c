@@ -12,7 +12,7 @@
 int validateCredentials(char *usernameInput, char *passwordInput){
 	FILE *file;
 	//open file
-	if((file=fopen("members.csv", "r")) == 0){
+	if((file=fopen("databases/members.csv", "r")) == 0){
 		printf("error reading members.csv.\n");
 		return -1;
 	}
@@ -44,6 +44,7 @@ int main(){
 	int length = atoi(getenv("CONTENT_LENGTH"));
 	char string[200];
 	fgets(string, length, stdin); 
+	printf("message: %s\n", string);
 	printf("%d", validateCredentials("daniel", "yarden"));	
 	
 }
