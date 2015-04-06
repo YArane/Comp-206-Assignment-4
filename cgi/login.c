@@ -63,7 +63,7 @@ int parseCredentials(char *query, int length, char *username, char *password){
 }
 
 int main(){
-	/* receive username and password from Welcome.html
+	/* receive username and password from index.html
 		 * generate an error web page with a link back to the  welcome page
 		 * display a sucess page with a link to the topics update page
 	     ^generate these redirection pages using printf
