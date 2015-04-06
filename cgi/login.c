@@ -27,7 +27,6 @@ int validateCredentials(char *usernameInput, char *passwordInput){
 	while(getline(&line, &bytes, file) > 0){
 		//parsing the line
 		sscanf(line, "%s %s", username, password);
-		printf("%s %s <br>", username, password);
 		//validating
 		if(strcmp(usernameInput, username) == 0 && strcmp(passwordInput, password) == 0)
 			return 1;		
@@ -45,7 +44,6 @@ int parseCredentials(char *query, int length, char *username, char *password){
 	//copy username
 	while(*(query+i) != '&'){
 		*(username+u) = *(query+i);
-		printf("%s\n", username);
 		u++;
 		i++;
 	}
@@ -74,10 +72,15 @@ int main(){
 	int length = atoi(getenv("CONTENT_LENGTH"));
 	char string[200];
 	fgets(string, length+1, stdin); 
-	printf("<p>message: %s <br>", string);
 	
 	char username[32], password[32];
 	parseCredentials(string, length, username, password);
-	printf("%d<br>", validateCredentials(username, password));	
+	if(validateCredentials(username, password)){
+		printf("<p>login successful.</p>");
+		printf("<a href=\"../feed.html\"> go to the feed page. </a>");
+	}else{
+		printf("<p>incorrect login information</p>");
+		printf("<a href=\"../index.html\"> please try again. </a>");	
+	}
 	return 0;	
 }
