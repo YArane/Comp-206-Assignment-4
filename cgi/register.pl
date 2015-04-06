@@ -39,7 +39,7 @@ sub main {
     writeNewUserToDB("people", "hey");
   }
 
-  $query = $ENV(QUERY_STRING);
+  $query = $ENV{QUERY_STRING};
 
   print "Content-Type:text/html;charset=iso-8859-1";
   print "<TITLE>$query</TITLE>";
