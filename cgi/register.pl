@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-
+use Data::Dumper;
 use strict;
 use CGI ':standard';
 
@@ -32,9 +32,9 @@ sub writeNewUserToDB {
 sub parseQuery{
 	my @userData = split(/&/, @_[0]);
 	my %FORM;
-	foreach my $entry (my $userData){
+	foreach my $entry (@userData){
 		(my $key, my $value) = split(/=/, $entry);
-		my $value =~ tr/+/ /;
+		$value =~ tr/+/ /;
 		$value =~ s/%(..)/pack("C", hex($1))/eg;
 		$FORM{$key} = $value; 
 	}
@@ -43,27 +43,29 @@ sub parseQuery{
 }
 
 sub main {
-  #my $x = checkUsernameExistence("klk");
+	#read query from post
+	#read(STDIN, my $query, $ENV{'CONTENT_LENGTH'});
+	#parse query
+	my %userData = parseQuery("username=yarden&password=daniel");
 
-  #if ($x == 0) {
- #   writeNewUserToDB("peopfhjsdhjfsle", "hey");
-  #}
+	print "Content-type:text/html\r\n\r\n";
+	print "<html>";
+	print "<head>";
+	print "</head>";
+	print "<body>";
 
-  read(STDIN, my $query, $ENV{'CONTENT_LENGTH'});
-  my %userData = parseQuery($query);
+	my $x = checkUsernameExistence(%userData{'username'});
+	#validate username
+	if($x == 0) {
+		writeNewUserToDB(%userData{'username'}, %userData{'password'});
+		print "<p>Congratz! you successfully created a new account.</p>";
+	}else{
+		#redirect
+		print "<p> %userData{'username'} already exists.</p>"
+	}
 
-  print "Content-type:text/html\r\n\r\n";
-  print "<html>";
-  print "<head>";
-  print "</head>";
-  print "<body>";
-  print "<p>query: $query</p>";
-  print "<p>about to print!</p>";
-print "<p>$userData{username}</p>";
-print "<p>$userData{password}</p>";
-  print "<p>printed!</p>";
-  print "</body>";
-  print "</html>";
+	print "<a href=\"../index.html\"> go back to login page</a>";
+	print "</body>";
 }
 
 main();
