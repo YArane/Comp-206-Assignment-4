@@ -48,24 +48,21 @@ sub main {
 	#parse query
 	my %userData = parseQuery($query);
 
+	# print start
 	print "Content-type:text/html\r\n\r\n";
-	print "<html>";
-	print "<head>";
-	print "</head>";
-	print "<body>";
-
-	print $userData{'username'};
+	print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>REGISTRATION STATUS</title>\n\t</head>\n\t<body>\n";
 
 	#validate username
 	if(checkUsernameExistence($userData{'username'}) == 0){
 		writeNewUserToDB($userData{'username'}, $userData{'password'});
-		print "<p>Congratz! you successfully created a new account.</p>";
+		print "\t\t<center><h3>REGISTRATION SUCCESSFUL</h3></center>\n\t\t<p>Congratulations! New user created with the following credentials:<br>\n\t\t\tName: $userData{'name'}<br>\n\t\t\tUsername: $userData{'username'}<br>\n\t\t\tPassword: $userData{'password'}<br>\n\t\t\tYou may now log in.</p>\n";
+
 	}else{
-		#redirect
-		print "<p> $userData{'username'} already exists.</p>"
-    print "<a href=\"../index.html\"> go back to login page</a>";
+		print "\t\t<center><h3>REGISTRATION UNSUCCESSFUL</h3></center>\n\t\t<p>Another user already exists with  username: $userData{'username'}<br>\n\t\t\tPlease select another!</p>\n"
 	}
-	print "</body>";
+	
+	# print end
+	print "\t\t<p><a href="index.html"><i>Back to homepage?</i></a></p>\n\t</body>\n</html>";
 }
 
 main();
