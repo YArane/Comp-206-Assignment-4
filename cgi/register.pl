@@ -60,12 +60,18 @@ sub main {
 	if(checkUsernameExistence($userData{'username'}) == 0){
 		writeNewUserToDB($userData{'username'}, $userData{'password'});
 		print "<p>Congratz! you successfully created a new account.</p>";
+    print "<form action=\"cgi/MyFacebookPage.py\" method=post>
+          <fieldset>
+          <input type=\"hidden\" name=\"username\" value=\"$userData{'username'}\">
+          <br><br>
+            <input type=\"submit\" value=\"Go to Feed Page\">
+          </fieldset>
+          </form>"
 	}else{
 		#redirect
 		print "<p> $userData{'username'} already exists.</p>"
+    print "<a href=\"../index.html\"> go back to login page</a>";
 	}
-
-	print "<a href=\"../index.html\"> go back to login page</a>";
 	print "</body>";
 }
 
