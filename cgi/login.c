@@ -42,6 +42,8 @@ int main(){
 	     ^generate these redirection pages using printf
 	*/
 	int length = atoi(getenv("CONTENT_LENGTH"));
+	char string[200];
+	fgets(string, length, stdin); 
 	printf("%d", validateCredentials("daniel", "yarden"));	
 	
 }
