@@ -5,12 +5,24 @@
 	</head>
 	<body>
 		<center><h1>FEED</h1></center>
-		<p>Make a new post below:</p>
-		<form action="cgi/post.cgi" method=post>
-			<fieldset>
-			Update: <input type="text" name="name">
-			<br>
+		<center><form action="cgi/post.cgi" method=post>
+			New post:<br>
+			<input type="text" name="post">
+			<input type="submit" value="Submit">
 			</fieldset>
+			<br>
+		</form></center>
+		<p>User list:<br>
+			&emsp;<i>No users have signed up yet...</i><!-- TODO read users from databse --></p>
+
+		<p>Don't have a social life? Want to follow people just like you? Add a user below:</p>
+		<form action="cgi/follow.cgi" method=post>
+			&emsp;Username:<br>
+			&emsp;<input type="text" name="username">
+			<input type="submit" value="Follow">
+			</fieldset>
+			<br>
 		</form>
+
 	</body>
 </html>
