@@ -1,6 +1,11 @@
 #!/usr/bin/perl
 
+use strict;
+use CGI ':standard';
+
 $file = '../databases/members.csv';
+
+
 
 sub checkUsernameExistence {
   open(INFO, "<$file");
@@ -27,9 +32,18 @@ sub writeNewUserToDB {
   close $fh;
 }
 
+sub main {
+  $x = checkUsernameExistence("klk");
 
-$x = checkUsernameExistence("klk");
+  if ($x == 0) {
+    writeNewUserToDB("people", "hey");
+  }
 
-if ($x == 0) {
-  writeNewUserToDB("people", "hey");
+  $query = $ENV(QUERY_STRING);
+
+  print "Content-Type:text/html;charset=iso-8859-1";
+  print "<TITLE>$query</TITLE>";
 }
+
+main();
+
