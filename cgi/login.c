@@ -18,13 +18,15 @@ int validateCredentials(char *usernameInput, char *passwordInput){
 	}
 	//reading a line
 	char *line;
+	int *bytes_ptr;
 	int bytes = 200;
+	bytes_ptr = &bytes;
 	if((line = (char *) malloc(bytes+1)) == 0){
 		printf("error readding from file.\n");
 		return -1;
 	}
 	char username[32], password[32];
-	while(getline(&line, &bytes, file) > 0){
+	while(getline(&line, (size_t *) bytes_ptr, file) > 0){
 		//parsing the line
 		sscanf(line, "%s %s", username, password);
 		//validating
