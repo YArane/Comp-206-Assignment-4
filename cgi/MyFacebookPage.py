@@ -1,8 +1,8 @@
 #!/usr/bin/python
+import cgi, cgitb 
 
 membersDBpath = "../databases/members.csv"
 topicsDBpath = "../databases/topic.csv"
-
 
 def line_prepender(line):
     with open(topicsDBpath, 'r+') as f:
@@ -90,6 +90,27 @@ def addNewFriend(username, friendUsername):
   with open(membersDBpath, 'w') as fo:
     fo.writelines( foText )
 
+def main():
+  form = cgi.FieldStorage()
+  username = form.getValue('username')
+  #username = "maca"
+  #posts = readFeed(username)
+  members = retrieveUsernames()
+  print "Content-type:text/html\r\n\r\n"
+  print '<html>'
+  print '<head>'
+  print "<title>Hey there %s! Welcome to your feed</title>" % (username)
+  print '</head>'
+  print '<body>'
+  for post in posts:
+    print "<p>%s posted -> %s</p>" % (post[0], post[1])
+  print "<p>The existing members are the following:</p>"
+  for member in members:
+    print "<p>%s</p>" % (member)
+  print "<a href=\"../index.html\">Logout</a>"
+  print '</body>'
+  print '</html>'
+
 #x = retrieveUsernames()
 #y = readFeed()
 #print x
@@ -97,12 +118,13 @@ def addNewFriend(username, friendUsername):
 #addNewPost("yarden", "brett is my friend")
 #addNewFriend("tt", "dan")
 #getFriends("tt")
-x = readFeed("maca");
-print x
-y = retrieveUsernames()
-print y
-addNewFriend("ale", "maca")
+#x = readFeed("maca");
+#print x
+#y = retrieveUsernames()
+#print y
+#addNewFriend("ale", "maca")
 
+main()
 
 
 
