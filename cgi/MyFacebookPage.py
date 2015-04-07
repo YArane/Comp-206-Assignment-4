@@ -39,23 +39,6 @@ def addNewPost(username, postData):
   line_prepender(postData)
   line_prepender(username)
 
-def validateFriend(friendUsername):
-  names = retrieveUsernames();
-  for name in names:
-    if name == friendUsername:
-      return True
-  return False
-
-def checkIfAlreadyFriends(dbEntry, friendUsername):
-  i = 3
-  if len(dbEntry) <= 3:
-    return False
-  while i < len(dbEntry):
-    if dbEntry[i] == friendUsername:
-      return True
-    i += 1
-  return False
-
 def getFriends(username):
   fo = open(membersDBpath, "r")
   splitted = []
@@ -66,29 +49,6 @@ def getFriends(username):
       for i in range(3, len(splitted)):
         friends.append(splitted[i])
   return friends
-
-
-def addNewFriend(username, friendUsername):
-  if not validateFriend(friendUsername):
-    return False
-  
-  fo = open(membersDBpath, "r")
-  foText = fo.readlines()
-  fo.seek(0,0)
-  lineNum = 0;
-  splitted = []
-  while True:
-    line = fo.readline().rstrip()
-    if not line: break  # EOF
-    splitted = line.split()
-    if splitted[1] == username and not checkIfAlreadyFriends(splitted, friendUsername):
-      foText[lineNum] = foText[lineNum].rstrip() + " " + friendUsername +"\n" 
-      break;
-    lineNum += 1
-  fo.close();
-
-  with open(membersDBpath, 'w') as fo:
-    fo.writelines( foText )
 
 def main():
   form = cgi.FieldStorage()
@@ -108,22 +68,10 @@ def main():
   print "<p>The existing members are the following:</p>"
   for member in members:
     print "<p>%s</p>" % (member)
+  print "<form action=\"addNewFriend.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br>Add new Friend:<br><input type=\"text\" name=\"friendUsername\"><br><br><input type=\"submit\" value=\"Add Friend\"></fieldset></form>" % (username)
   print "<a href=\"../index.html\">Logout</a>"
   print '</body>'
   print '</html>'
-
-#x = retrieveUsernames()
-#y = readFeed()
-#print x
-#print y
-#addNewPost("yarden", "brett is my friend")
-#addNewFriend("tt", "dan")
-#getFriends("tt")
-#x = readFeed("maca");
-#print x
-#y = retrieveUsernames()
-#print y
-#addNewFriend("ale", "maca")
 
 main()
 
