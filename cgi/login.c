@@ -58,7 +58,7 @@ int parseCredentials(char *query, int length, char *username, char *password){
 		p++;
 		i++;
 	}
-	*(password+u) = '\0';
+	*(password+p) = '\0';
 	return 0;
 }
 
