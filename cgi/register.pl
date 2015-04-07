@@ -55,10 +55,10 @@ sub main {
 	#validate username
 	if(checkUsernameExistence($userData{'username'}) == 0){
 		writeNewUserToDB($userData{'username'}, $userData{'password'});
-		print "\t\t<center><h3>REGISTRATION SUCCESSFUL</h3></center>\n\t\t<p>Congratulations! New user created with the following credentials:<br>\n\t\t\tName: $userData{'name'}<br>\n\t\t\tUsername: $userData{'username'}<br>\n\t\t\tPassword: $userData{'password'}<br>\n\t\t\tYou may now log in.</p>\n";
+		print "\t\t<center><h2>REGISTRATION SUCCESSFUL</h2></center>\n\t\t<p>Congratulations! New user created with the following credentials:<br><br>\n\t\t\t&nbsp;Name: $userData{'name'}<br>\n\t\t\t&nbsp;Username: $userData{'username'}<br>\n\t\t\t&nbsp;Password: $userData{'password'}<br>\n\t\t\t<br>You may now log in.</p>\n";
 
 	}else{
-		print "\t\t<center><h3>REGISTRATION UNSUCCESSFUL</h3></center>\n\t\t<p>Another user already exists with  username: $userData{'username'}<br>\n\t\t\tPlease select another!</p>\n"
+		print "\t\t<center><h2>REGISTRATION UNSUCCESSFUL</h2></center>\n\t\t<p>Another user already exists with  username: $userData{'username'}<br>\n\t\t\tPlease select another.</p>\n"
 	}
 	
 	# print end
