@@ -18,18 +18,21 @@ def retrieveUsernames():
     splitted = line.split()
     if len(splitted) > 0:
       userData.append(splitted[1]) 
+  fo.close()
   return userData
 
-def readFeed():
+def readFeed(username):
   fo = open(topicsDBpath, "r")
   postCount = 0;
   retVal = []
+  friends = getFriends(username)
   while postCount < 10:
     line1 = fo.readline().rstrip()
     line2 = fo.readline().rstrip()
     if not line2: break  # EOF
-    retVal.append((line1, line2))
-    postCount += 1
+    if line1 in friends:
+      retVal.append((line1, line2))
+      postCount += 1
   return retVal
 
 def addNewPost(username, postData):
@@ -43,7 +46,7 @@ def validateFriend(friendUsername):
       return True
   return False
 
-def isAFriend(dbEntry, friendUsername):
+def checkIfAlreadyFriends(dbEntry, friendUsername):
   i = 3
   if len(dbEntry) <= 3:
     return False
@@ -52,6 +55,17 @@ def isAFriend(dbEntry, friendUsername):
       return True
     i += 1
   return False
+
+def getFriends(username):
+  fo = open(membersDBpath, "r")
+  splitted = []
+  friends = []
+  for line in fo:
+    splitted = line.split()
+    if splitted[1] == username:
+      for i in range(3, len(splitted)):
+        friends.append(splitted[i])
+  return friends
 
 
 def addNewFriend(username, friendUsername):
@@ -67,11 +81,11 @@ def addNewFriend(username, friendUsername):
     line = fo.readline().rstrip()
     if not line: break  # EOF
     splitted = line.split()
-    if splitted[1] == username and not isAFriend(splitted, friendUsername):
+    if splitted[1] == username and not checkIfAlreadyFriends(splitted, friendUsername):
       foText[lineNum] = foText[lineNum].rstrip() + " " + friendUsername +"\n" 
       break;
     lineNum += 1
-  fo.close;
+  fo.close();
 
   with open(membersDBpath, 'w') as fo:
     fo.writelines( foText )
@@ -81,7 +95,14 @@ def addNewFriend(username, friendUsername):
 #print x
 #print y
 #addNewPost("yarden", "brett is my friend")
-addNewFriend("tt", "dan")
+#addNewFriend("tt", "dan")
+#getFriends("tt")
+x = readFeed("maca");
+print x
+y = retrieveUsernames()
+print y
+addNewFriend("ale", "maca")
+
 
 
 
