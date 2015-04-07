@@ -25,7 +25,7 @@ sub checkUsernameExistence {
 
 sub writeNewUserToDB {
   open(my $fh, '+>>', $file);
-  print $fh "\n@_[0] @_[1]";
+  print $fh "\n@_[0] @_[1] @_[2]";
   close $fh;
 }
 
@@ -54,7 +54,7 @@ sub main {
 
 	#validate username
 	if(checkUsernameExistence($userData{'username'}) == 0){
-		writeNewUserToDB($userData{'username'}, $userData{'password'});
+		writeNewUserToDB($userData{'name'}, $userData{'username'}, $userData{'password'});
 		print "\t\t<center><h1>REGISTRATION SUCCESSFUL</h1></center>\n\t\t<p>Congratulations! New user created with the following credentials:<br><br>\n\t\t\t&emsp;Name: $userData{'name'}<br>\n\t\t\t&emsp;Username: $userData{'username'}<br>\n\t\t\t&emsp;Password: $userData{'password'}<br>\n\t\t\t<br>You may now log in.</p>\n";
 
 	}else{
