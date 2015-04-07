@@ -37,21 +37,11 @@ int validateCredentials(char *usernameInput, char *passwordInput){
 
 }
 
-int parseCredentials(char *query, int length, char *name,  char *username, char *password){
+int parseCredentials(char *query, int length, char *username, char *password){
 	int i;
-	int n = 0;
 	int u = 0;
 	int p = 0;
 	for(i=0;*(query+i) != '=';i++){}
-	i++;
-	//copy name
-	while(*(query+i) != '&'){
-		*(name+n) = *(query+i);
-		n++;
-		i++;
-	}
-	*(name+n) = '\0';
-	for(;*(query+i) != '=';i++){}
 	i++;
 	//copy username
 	while(*(query+i) != '&'){
@@ -85,12 +75,12 @@ int main(){
 	char string[200];
 	fgets(string, length+1, stdin); 
 	
-	char name[32], username[32], password[32];
-	parseCredentials(string, length, name, username, password);
+	char username[32], password[32];
+	parseCredentials(string, length, username, password);
 	if(validateCredentials(username, password)){
-		printf("<p>login successful.</p>");
-		printf("<a href=\"../feed.html\"> go to the feed page. </a>");
-		printf("<form action=\"cgi/MyFacebookPage.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"$userData{'username'}\"><br><br><input type=\"submit\" value=\"Go to Feed Page\"></fieldset></form>");
+		printf("<p>login successful. %s</p>", username);
+		//printf("<a href=\"../feed.html\"> go to the feed page. </a>");
+		printf("<form action=\"MyFacebookPage.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br><input type=\"submit\" value=\"Go to Feed Page\"></fieldset></form>", username);
 	}else{
 		printf("<p>incorrect login information</p>");
 		printf("<a href=\"../index.html\"> please try again. </a>");	

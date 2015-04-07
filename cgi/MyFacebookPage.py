@@ -92,9 +92,9 @@ def addNewFriend(username, friendUsername):
 
 def main():
   form = cgi.FieldStorage()
-  username = form.getValue('username')
+  username = form.getvalue('username')
   #username = "maca"
-  #posts = readFeed(username)
+  posts = readFeed(username)
   members = retrieveUsernames()
   print "Content-type:text/html\r\n\r\n"
   print '<html>'
@@ -102,6 +102,7 @@ def main():
   print "<title>Hey there %s! Welcome to your feed</title>" % (username)
   print '</head>'
   print '<body>'
+  print "<p> USER: %s </p>" % (username)
   for post in posts:
     print "<p>%s posted -> %s</p>" % (post[0], post[1])
   print "<p>The existing members are the following:</p>"
