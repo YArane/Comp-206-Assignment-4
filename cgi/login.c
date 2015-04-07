@@ -25,10 +25,10 @@ int validateCredentials(char *usernameInput, char *passwordInput){
 		printf("error readding from file.\n");
 		return -1;
 	}
-	char username[32], password[32];
+	char username[32], password[32], name[32];
 	while(getline(&line, (size_t *) bytes_ptr, file) > 0){
 		//parsing the line
-		sscanf(line, "%s %s", username, password);
+		sscanf(line, "%s %s %s", name, username, password);
 		//validating
 		if(strcmp(usernameInput, username) == 0 && strcmp(passwordInput, password) == 0)
 			return 1;		
