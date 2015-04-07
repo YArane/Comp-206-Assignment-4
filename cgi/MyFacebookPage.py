@@ -1,14 +1,8 @@
 #!/usr/bin/python
-import cgi, cgitb 
+import cgi, cgitb
 
 membersDBpath = "../databases/members.csv"
 topicsDBpath = "../databases/topic.csv"
-
-def line_prepender(line):
-    with open(topicsDBpath, 'r+') as f:
-        content = f.read()
-        f.seek(0, 0)
-        f.write(line.rstrip('\r\n') + '\n' + content)
 
 def retrieveUsernames():
   fo = open(membersDBpath, "r")
@@ -35,10 +29,6 @@ def readFeed(username):
       postCount += 1
   return retVal
 
-def addNewPost(username, postData):
-  line_prepender(postData)
-  line_prepender(username)
-
 def getFriends(username):
   fo = open(membersDBpath, "r")
   splitted = []
@@ -53,7 +43,6 @@ def getFriends(username):
 def main():
   form = cgi.FieldStorage()
   username = form.getvalue('username')
-  #username = "maca"
   posts = readFeed(username)
   members = retrieveUsernames()
   print "Content-type:text/html\r\n\r\n"
@@ -68,7 +57,8 @@ def main():
   print "<p>The existing members are the following:</p>"
   for member in members:
     print "<p>%s</p>" % (member)
-  print "<form action=\"addNewFriend.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br>Add new Friend:<br><input type=\"text\" name=\"friendUsername\"><br><br><input type=\"submit\" value=\"Add Friend\"></fieldset></form>" % (username)
+  print "<form action=\"addNewFriend.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br>Add new Friend:<br><input type=\"text\" name=\"friendUsername\" required><br><br><input type=\"submit\" value=\"Add Friend\"></fieldset></form>" % (username)
+  print "<form action=\"createNewPost.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br>Create a new status update:<br><input type=\"text\" name=\"postData\" required><br><br><input type=\"submit\" value=\"Submit\"></fieldset></form>" % (username)
   print "<a href=\"../index.html\">Logout</a>"
   print '</body>'
   print '</html>'
