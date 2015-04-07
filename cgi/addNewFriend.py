@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import cgi, cgitb 
 
 membersDBpath = "../databases/members.csv"
@@ -36,7 +37,7 @@ def addNewFriend(username, friendUsername):
     return False
   
   addedFriend = False
-  fo = open(membersDBpath, "r")
+  fo = open(membersDBpath, "r+")
   foText = fo.readlines()
   fo.seek(0,0)
   lineNum = 0;
@@ -51,6 +52,9 @@ def addNewFriend(username, friendUsername):
       break;
     lineNum += 1
   fo.close();
+  
+  with open(membersDBpath, 'w') as fo:
+  	fo.writelines(foText)
   return addedFriend;
 
 def main():
@@ -68,7 +72,7 @@ def main():
     print "<p>You are now friends with %s</p>" % (friendUsername)
   else:
     print "<p>%s was not added to your friend list. You are already friends or he/she does not exist.</p>" % (friendUsername)
-  print "<form action=\"cgi/MyFacebookPage.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br><input type=\"submit\" value=\"Go to Feed Page\"></fieldset></form>" % (username)
+  print "<form action=\"MyFacebookPage.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br><input type=\"submit\" value=\"Go to Feed Page\"></fieldset></form>" % (username)
   print '</body>'
   print '</html>'
 
