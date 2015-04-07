@@ -62,7 +62,7 @@ sub main {
 	}
 	
 	# print end
-	print "\t\t<p><a href=\"index.html\"><i>Back to homepage?</i></a></p>\n\t</body>\n</html>";
+	print "\t\t<p><a href=\"../index.html\"><i>Back to homepage?</i></a></p>\n\t</body>\n</html>";
 }
 
 main();
