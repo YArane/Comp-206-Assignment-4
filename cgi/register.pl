@@ -15,7 +15,7 @@ sub checkUsernameExistence {
 
     my @words = split(/\s+/, $line);
 
-    if (@words[0] eq @_[0]) {
+    if (@words[1] eq @_[0]) {
       return 1;
     } 
     
@@ -25,7 +25,7 @@ sub checkUsernameExistence {
 
 sub writeNewUserToDB {
   open(my $fh, '+>>', $file);
-  print $fh "\n@_[0] @_[1] @_[2]";
+  print $fh "@_[0] @_[1] @_[2]\n";
   close $fh;
 }
 
