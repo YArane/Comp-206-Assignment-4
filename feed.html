@@ -4,25 +4,30 @@
 		<title>FEED</title>
 	</head>
 	<body>
-		<center><h1>FEED</h1></center>
-		<center><form action="cgi/post.cgi" method=post>
+
+		<center><h1>FEED</h1>
+		<p><i>Logged in as: %s</i></p><br>
+		<form action="createNewPost.py" method=post>
 			New post:<br>
 			<input type="text" name="post">
 			<input type="submit" value="Submit">
-			</fieldset>
-			<br>
-		</form></center>
+		</form><br><br>
+		<p>
+			<!-- posts here -->
+		</p></center>
+
+
 		<p>User list:<br>
-			&emsp;<i>No users have signed up yet...</i><!-- TODO read users from databse --></p>
+			<!-- users here -->
+		</p>
 
 		<p>Don't have a social life? Want to follow people just like you? Add a user below:</p>
-		<form action="cgi/follow.cgi" method=post>
+		<form action="addNewFriend.py" method=post>
 			&emsp;Username:<br>
 			&emsp;<input type="text" name="username">
 			<input type="submit" value="Follow">
 			</fieldset>
 			<br>
 		</form>
-
 	</body>
 </html>
