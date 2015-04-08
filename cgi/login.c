@@ -68,22 +68,26 @@ int main(){
 		 * display a sucess page with a link to the topics update page
 	     ^generate these redirection pages using printf
 	*/
+
+	// print start html
 	printf("%s%c%c\n",
 	  "Content-Type:text/html;charset=iso-8859-1",13,10);
-	printf("<title>Login Page</title>\n");
+	printf("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>LOGIN STATUS</title>\n\t</head>\n\t<body>\n");
+	
 	int length = atoi(getenv("CONTENT_LENGTH"));
 	char string[200];
 	fgets(string, length+1, stdin); 
 	
 	char username[32], password[32];
 	parseCredentials(string, length, username, password);
+
 	if(validateCredentials(username, password)){
-		printf("<p>login successful. %s</p>", username);
-		//printf("<a href=\"../feed.html\"> go to the feed page. </a>");
-		printf("<form action=\"MyFacebookPage.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br><input type=\"submit\" value=\"Go to Feed Page\"></fieldset></form>", username);
+		printf("\t\t<center><h1>LOGIN SUCCESSFUL</h1></center>\n\t\t<p>Welcome back, %s.</p>\n\t\t<form action=\"MyFacebookPage.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t<input type=\"submit\" value=\"Proceed to feed\">\n\t\t</form>", username);	
 	}else{
-		printf("<p>incorrect login information</p>");
-		printf("<a href=\"../index.html\"> please try again. </a>");	
+		printf("\t\t<center><h1>LOGIN UNSUCCESSFUL</h1></center>\n\t\t<p><a href=\"index.html\"><i>Back to homepage</i></a></p>\n");
 	}
+
+	// print end html
+	printf("\t</body>\n</html>");
 	return 0;	
 }
