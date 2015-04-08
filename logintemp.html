@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>SIGN UP</title>
+		<title>LOGIN STATUS</title>
 	</head>
 	<body>
-		<center><h1>SIGN UP</h1></center>
-		<p>Please fill in the appropriate information below:</p>
+
+
+		<center><h1>LOGIN SUCCESSFUL</h1>
+		<p>Welcome back, %s.</p>
 		<form action="MyFacebookPage.py" method=post>
-			<input type=\"hidden\" name=\"username\" value=\"%s\">
-			<input type=\"submit\" value=\"Go to Feed Page\">
-		</form>
-		<p><a href="index.html"><i>Changed your mind?</i></a></p>
+			<input type="hidden" name="username" value="%s">
+			<input type="submit" value="Proceed to feed">
+		</form></center>
+
+		<center><h1>LOGIN UNSUCCESSFUL</h1>
+		<p>Credentials failed. Please try logging in again.</p>
+		<p><a href="index.html"><i>Back to homepage</i></a></p></center>
+
 	</body>
 </html>
