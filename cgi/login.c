@@ -82,9 +82,9 @@ int main(){
 	parseCredentials(string, length, username, password);
 
 	if(validateCredentials(username, password)){
-		printf("\t\t<center><h1>LOGIN SUCCESSFUL</h1></center>\n\t\t<p>Welcome back, %s.</p>\n\t\t<form action=\"MyFacebookPage.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t<input type=\"submit\" value=\"Proceed to feed\">\n\t\t</form>", username);	
+		printf("\t\t<center><h1>LOGIN SUCCESSFUL</h1>\n\t\t<p>Welcome back, %s.</p>\n\t\t<form action=\"MyFacebookPage.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t<input type=\"submit\" value=\"Proceed to feed\">\n\t\t</form></center>\n", username, username);
 	}else{
-		printf("\t\t<center><h1>LOGIN UNSUCCESSFUL</h1></center>\n\t\t<p><a href=\"index.html\"><i>Back to homepage</i></a></p>\n");
+		printf("\t\t<center><h1>LOGIN UNSUCCESSFUL</h1>\n\t\t<p><a href=\"index.html\"><i>Back to homepage</i></a></p></center>\n");
 	}
 
 	// print end html
