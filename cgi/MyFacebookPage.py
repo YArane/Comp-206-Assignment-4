@@ -24,7 +24,7 @@ def readFeed(username):
     line1 = fo.readline().rstrip()
     line2 = fo.readline().rstrip()
     if not line2: break  # EOF
-    if line1 in friends:
+    if line1 in friends or line1 == username:
       retVal.append((line1, line2))
       postCount += 1
   return retVal
