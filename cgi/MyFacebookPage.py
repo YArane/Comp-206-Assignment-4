@@ -55,6 +55,6 @@ def main():
   for member in members:
     print "\t\t\t&emsp;%s\n" % (member)
 
-  print "\t\t<br><br>\n\t\t<p>Don't have a social life? Want to follow people just like you? Add a user below:</p>\n\t\t<form action=\"addNewFriend.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t&emsp;Username:<br>\n\t\t\t&emsp;<input type=\"text\" name=\"username\">\n\t\t\t<input type=\"submit\" value=\"Follow\">\n\t\t\t</fieldset>\n\t\t\t<br>\n\t\t</form>\n\t</body>\n</html>" % (username)
+  print "\t\t<br><br>\n\t\t<p>Don't have a social life? Want to follow people just like you? Add a user below:</p>\n\t\t<form action=\"addNewFriend.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t&emsp;Username:<br>\n\t\t\t&emsp;<input type=\"text\" name=\"username\">\n\t\t\t<input type=\"submit\" value=\"Follow\">\n\t\t\t</fieldset>\n\t\t\t<br>\n\t\t</form>\n\t<p><i><a href=\"../index.html\">Logout</a></i></p>\n\t</body>\n</html>" % (username)
 
 main()
