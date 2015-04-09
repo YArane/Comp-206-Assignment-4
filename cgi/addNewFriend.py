@@ -66,7 +66,7 @@ def main():
   print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>ADD FRIEND STATUS</title>\n\t</head>\n\t<body>\n"
   
   if addedFriend == True:
-    print "\t\t<center><h1>FRIEND REQUEST SUCCESSFUL</h1>\n\t\t<p>You will now see posts from <i>%s</i>.</p></center>\n" % (friendUsername)
+    print "\t\t<center><h1>FRIEND REQUEST SUCCESSFUL</h1>\n\t\t<p>You will now see posts from <i>%s</i>.</p>\n" % (friendUsername)
   else:
     print "\t\t<center><h1>FRIEND REQUEST UNSUCCESSFUL</h1>\n\t\t<p>User <i>%s</i> does not exist, or you are already friends with them.</p>\n" % (friendUsername)
   
