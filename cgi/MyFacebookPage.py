@@ -46,12 +46,12 @@ def main():
   posts = readFeed(username)
   members = retrieveUsernames()
   print "Content-type:text/html\r\n\r\n"
-  print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>FEED</title>\n\t</head>\n\t<body>\n\n\t\t<center><h1>FEED</h1>\n\t\t<p><i>Logged in as: %s</i></p><br>\n\t\t<form action=\"createNewPost.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\tNew post:<br>\n\t\t\t<input type=\"text\" name=\"postData\">\n\t\t\t<input type=\"submit\" value=\"Post\">\n\t\t</form><br><br>\n\t\t<p>" % (username, username)
+  print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>FEED</title>\n\t</head>\n\t<body>\n\n\t\t<center><h1>FEED</h1>\n\t\t<p><i>Logged in as: %s</i></p><br>\n\t\t<form action=\"createNewPost.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\tNew post:<br>\n\t\t\t<input type=\"text\" name=\"postData\">\n\t\t\t<input type=\"submit\" value=\"Post\">\n\t\t</form></center><br><br>\n\t\t" % (username, username)
   
   for post in posts:
-    print "\t\t\t<p>%s:&emsp;&emsp;&emsp;%s</p>" % (post[0], post[1])
+    print "\t\t\t<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>%s</b>:&emsp;&emsp;&emsp;<i>%s</i></p>" % (post[0], post[1])
 
-  print "\t\t</p></center>\n\t\t<p>User list:<br>\n\t\t\t<ul>\n\t\t\t\t"
+  print "\t\t</p>\n\t\t<h3>User list:</h3><br>\n\t\t\t<ul>\n\t\t\t\t"
   for member in members:
     print "\t\t\t\t<li>%s</li>\n" % (member)
 
