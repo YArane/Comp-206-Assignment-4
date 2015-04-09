@@ -1,9 +1,3 @@
-/*Program: login.c
- *Authors: Yarden & Daniel
- *Date created: 150405
- *Last modified 150405
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

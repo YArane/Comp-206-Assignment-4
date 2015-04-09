@@ -58,7 +58,7 @@ sub main {
 		print "\t\t<center><h1>REGISTRATION SUCCESSFUL</h1></center>\n\t\t<p>Congratulations! New user created with the following credentials:<br><br>\n\t\t\t&emsp;Name: $userData{'name'}<br>\n\t\t\t&emsp;Username: $userData{'username'}<br>\n\t\t\t&emsp;Password: $userData{'password'}<br>\n\t\t\t<br>You may now log in.</p>\n";
 
 	}else{
-		print "\t\t<center><h1>REGISTRATION UNSUCCESSFUL</h1></center>\n\t\t<p>Another user already exists with  username: $userData{'username'}<br>\n\t\t\tPlease select another.</p>\n"
+		print "\t\t<center><h1>REGISTRATION UNSUCCESSFUL</h1></center>\n\t\t<p>Another user already exists with username: $userData{'username'}<br>\n\t\t\tPlease select another.</p>\n"
 	}
 	
 	# print end
@@ -66,4 +66,3 @@ sub main {
 }
 
 main();
-

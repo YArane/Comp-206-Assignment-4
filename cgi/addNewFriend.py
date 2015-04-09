@@ -63,44 +63,12 @@ def main():
   friendUsername = form.getvalue('friendUsername')
   addedFriend = addNewFriend(username, friendUsername)
   print "Content-type:text/html\r\n\r\n"
-  print '<html>'
-  print '<head>'
-  print "<title>Friend request result</title>"
-  print '</head>'
-  print '<body>'
+  print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>ADD FRIEND STATUS</title>\n\t</head>\n\t<body>\n"
+  
   if addedFriend == True:
-    print "<p>You are now friends with %s</p>" % (friendUsername)
+    print "\t\t<center><h1>FRIEND REQUEST SUCCESSFUL</h1>\n\t\t<p>You will now see posts from %s.</p></center>\n" % (friendUsername)
   else:
-    print "<p>%s was not added to your friend list. You are already friends or he/she does not exist.</p>" % (friendUsername)
-  print "<form action=\"MyFacebookPage.py\" method=post><fieldset><input type=\"hidden\" name=\"username\" value=\"%s\"><br><br><input type=\"submit\" value=\"Go to Feed Page\"></fieldset></form>" % (username)
-  print '</body>'
-  print '</html>'
-
+    print "\t\t<center><h1>FRIEND REQUEST UNSUCCESSFUL</h1>\n\t\t<p>User %s does not exist or you are already friends with them.</p></center>\n" % (friendUsername)
+  
+  print "\t\t<form action=\"MyFacebookPage.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t<input type=\"submit\" value=\"Back to feed\">\n\t\t</form>\n\t</body>\n</html>" % (username)
 main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
