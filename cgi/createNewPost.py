@@ -20,5 +20,5 @@ def main():
   postData = form.getvalue('postData')
   addNewPost(username, postData)
   print "Content-type:text/html\r\n\r\n"
-  print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>POST STATUS</title>\n\t</head>\n\t<body>\n\t\t<center><h1>POST CREATED SUCCESSFULLY</h1>\n\t\t<p>Your post below was successfully created:<br>\n\t\t\t%s</p>\n\t\t<form action=\"MyFacebookPage.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t<input type=\"submit\" value=\"Back to feed\">\n\t\t</form></center>\n\t</body>\n</html>" % (postData, username)
+  print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>POST STATUS</title>\n\t</head>\n\t<body>\n\t\t<center><h1>POST CREATED SUCCESSFULLY</h1>\n\t\t<p>Your post below was successfully created:<br>\n\t\t\t<i>%s</i></p>\n\t\t<form action=\"MyFacebookPage.py\" method=post>\n\t\t\t<input type=\"hidden\" name=\"username\" value=\"%s\">\n\t\t\t<input type=\"submit\" value=\"Back to feed\">\n\t\t</form></center>\n\t</body>\n</html>" % (postData, username)
 main()
