@@ -4,6 +4,7 @@ import cgi, cgitb
 membersDBpath = "../databases/members.csv"
 topicsDBpath = "../databases/topic.csv"
 
+# Returns an array containing the usernames of the registered users
 def retrieveUsernames():
   fo = open(membersDBpath, "r")
   userData = []
@@ -15,6 +16,7 @@ def retrieveUsernames():
   fo.close()
   return userData
 
+# Returns true if the username passed is a registered user, otherwise false
 def validateFriend(friendUsername):
   names = retrieveUsernames();
   for name in names:
@@ -22,6 +24,8 @@ def validateFriend(friendUsername):
       return True
   return False
 
+# Returns true if the dbEntry passed already contains the friendUsername string passed.
+# Used to prevent adding the same friend multiple times
 def checkIfAlreadyFriends(dbEntry, friendUsername):
   i = 3
   if len(dbEntry) <= 3:
@@ -32,6 +36,7 @@ def checkIfAlreadyFriends(dbEntry, friendUsername):
     i += 1
   return False
 
+# Adds the a new friend to the database entry associated with the passed username
 def addNewFriend(username, friendUsername):
   if not validateFriend(friendUsername):
     return False
@@ -57,6 +62,7 @@ def addNewFriend(username, friendUsername):
   	fo.writelines(foText)
   return addedFriend;
 
+# Outputs html for the 'friend addition response', and executes add friend logic
 def main():
   form = cgi.FieldStorage()
   username = form.getvalue('username')

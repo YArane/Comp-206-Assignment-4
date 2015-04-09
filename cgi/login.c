@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*returns whether the username and password match an entry within members.csv*/
+/*
+	returns whether the username and password match an entry within members.csv
+*/
 int validateCredentials(char *usernameInput, char *passwordInput){
 	FILE *file;
 	//open file
@@ -30,7 +32,10 @@ int validateCredentials(char *usernameInput, char *passwordInput){
 	return 0;
 
 }
-
+/*
+	Parses the query string received from the index.html page. Copies those queries to
+	the username and password string buffers
+*/
 int parseCredentials(char *query, int length, char *username, char *password){
 	int i;
 	int u = 0;
@@ -56,14 +61,11 @@ int parseCredentials(char *query, int length, char *username, char *password){
 	return 0;
 }
 
+/*
+	Validates the login information, and prints a response that is either success or failure.
+*/
 int main(){
-	/* receive username and password from index.html
-		 * generate an error web page with a link back to the  welcome page
-		 * display a sucess page with a link to the topics update page
-	     ^generate these redirection pages using printf
-	*/
-
-	// print start html
+	
 	printf("%s%c%c\n",
 	  "Content-Type:text/html;charset=iso-8859-1",13,10);
 	printf("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>LOGIN STATUS</title>\n\t</head>\n\t<body>\n");
@@ -81,7 +83,6 @@ int main(){
 		printf("\t\t<center><h1>LOGIN UNSUCCESSFUL</h1>\n\t\t<p>Credentials failed. Please try logging in again.</p>\n\t\t<p><a href=\"../index.html\"><i>Back to homepage</i></a></p></center>\n");
 	}
 
-	// print end html
 	printf("\t</body>\n</html>");
 	return 0;	
 }

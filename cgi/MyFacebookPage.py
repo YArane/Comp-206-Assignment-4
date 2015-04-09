@@ -4,6 +4,7 @@ import cgi, cgitb
 membersDBpath = "../databases/members.csv"
 topicsDBpath = "../databases/topic.csv"
 
+# Returns an array containing the all the usernames of registered users
 def retrieveUsernames():
   fo = open(membersDBpath, "r")
   userData = []
@@ -15,6 +16,8 @@ def retrieveUsernames():
   fo.close()
   return userData
 
+# Returns an array containing 10 or fewer posts from the friends associated to the
+# passed username. If there are no posts, an empty array is returned
 def readFeed(username):
   fo = open(topicsDBpath, "r")
   postCount = 0;
@@ -29,6 +32,7 @@ def readFeed(username):
       postCount += 1
   return retVal
 
+# Returns an array containing the usernames of the friends associated to the passed username
 def getFriends(username):
   fo = open(membersDBpath, "r")
   splitted = []
@@ -40,6 +44,7 @@ def getFriends(username):
         friends.append(splitted[i])
   return friends
 
+# Prints the list of existing users, latest posts, and the new friend/post creation forms
 def main():
   form = cgi.FieldStorage()
   username = form.getvalue('username')

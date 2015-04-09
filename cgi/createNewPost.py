@@ -4,16 +4,20 @@ import cgi, cgitb
 membersDBpath = "../databases/members.csv"
 topicsDBpath = "../databases/topic.csv"
 
+# Apepend the passed string to the beginning of the topics database
+# This way we shift the old posts down the database
 def line_prepender(line):
   with open(topicsDBpath, 'r+') as f:
     content = f.read()
     f.seek(0, 0)
     f.write(line.rstrip('\r\n') + '\n' + content)
 
+# Adds the user name and post information passed to the topics DB
 def addNewPost(username, postData):
   line_prepender(postData)
   line_prepender(username)
 
+# Executes post addition logic and prints the html for 'new post response'
 def main():
   form = cgi.FieldStorage()
   username = form.getvalue('username')

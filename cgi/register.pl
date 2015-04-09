@@ -5,6 +5,8 @@ use CGI ':standard';
 
 my $file = '../databases/members.csv';
 
+# Validates that the specified username exists in the database
+# Returns 1 if this is the case, and 0 if not.
 sub checkUsernameExistence {
   open(INFO, "<$file");
   my @lines = <INFO>;
@@ -23,12 +25,15 @@ sub checkUsernameExistence {
   return 0;
 }
 
+# Creates a new entry in the members DB.
+# Stores the username, password, and name.
 sub writeNewUserToDB {
   open(my $fh, '+>>', $file);
   print $fh "@_[0] @_[1] @_[2]\n";
   close $fh;
 }
 
+# Parses the query received so that the username/password/name values are stored in a hash
 sub parseQuery{
 	my @userData = split(/&/, @_[0]);
 	my %FORM;
@@ -42,6 +47,8 @@ sub parseQuery{
 	return %FORM;
 }
 
+# Registers the new user and prints the html explaining whether the operation was successful
+# or not
 sub main {
 	#read query from post
 	read(STDIN, my $query, $ENV{'CONTENT_LENGTH'});
