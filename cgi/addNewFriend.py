@@ -69,7 +69,7 @@ def main():
     friendUsername = form.getvalue('friendUsername')
     addedFriend = addNewFriend(username, friendUsername)
     print "Content-type:text/html\r\n\r\n"
-    print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>ADD FRIEND STATUS</title>\n\t</head>\n\t<body>\n"
+    print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>ADD FRIEND STATUS</title>\n\t</head>\n\t<body bgcolor=\"#e2a483\">\n"
     
     if addedFriend == True:
         print "\t\t<center><h1>FRIEND REQUEST SUCCESSFUL</h1>\n\t\t<p>You will now see posts from <i>%s</i>.</p>\n" % (friendUsername)

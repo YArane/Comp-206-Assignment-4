@@ -68,7 +68,7 @@ int main(){
 	
 	printf("%s%c%c\n",
 	  "Content-Type:text/html;charset=iso-8859-1",13,10);
-	printf("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>LOGIN STATUS</title>\n\t</head>\n\t<body>\n");
+	printf("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>LOGIN STATUS</title>\n\t</head>\n\t<body bgcolor=\"#e2a483\">\n");
 	
 	int length = atoi(getenv("CONTENT_LENGTH"));
 	char string[200];

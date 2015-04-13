@@ -57,7 +57,7 @@ sub main {
 
 	# print start
 	print "Content-type:text/html\r\n\r\n";
-	print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>REGISTRATION STATUS</title>\n\t</head>\n\t<body>\n";
+	print "<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>REGISTRATION STATUS</title>\n\t</head>\n\t<body bgcolor=\"#e2a483\">\n";
 
 	#validate username
 	if(checkUsernameExistence($userData{'username'}) == 0){
